@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button } from "@mui/material";
-import { withStyles } from "@mui/styles";
+import { Input, Button, withStyles } from "@mui/material";
 import InfoHolder from "../InfoHolder/InfoHolder";
 import findHandler from "../../handlers/google/findHandler";
 import changeHandler from "../../handlers/google/changeHandler";
