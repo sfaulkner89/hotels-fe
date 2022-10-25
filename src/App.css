@@ -1,38 +1,111 @@
+body {
+  background-color: darkslateblue;
+}
+
 .App {
   text-align: center;
+  margin-bottom: 3vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.topRow {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mapHolder {
+  width: 50vw;
+  background-color: darkslateblue;
+  border-radius: 40px;
+  padding: 1vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mapHolderFullscreen {
+  width: 100vw;
+  height: 100vh;
+  background-color: darkslateblue;
+}
+
+.submitButton {
+  margin: 3%;
+}
+
+.tableFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dropDownButton {
+  background-color: transparent;
+  border: none;
+}
+
+.stayAdder {
+  position: fixed;
+  background-color: grey;
+  top: 54vh;
+  left: 25vw;
+  height: 20vh;
+  width: 50vw;
+}
+.stateHolder {
+  min-height: 5vh;
+}
+.dateDisplay {
+  color: darkslateblue;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dateDisplay:hover {
+  text-decoration: underline;
+}
+
+.fullscreenButton {
+  background-color: white;
+  vertical-align: middle;
+  margin-left: -2vw;
+  padding: 1vh 1.3vh 1vh 1.3vh;
+  padding-top: 1.3vh;
+  margin-top: 0.3vh;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px black;
+}
+
+.hotelsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+}
+
+.hotelAdder {
+  margin-top: 1.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width: 60%;
 }
 
-.App-link {
-  color: #61dafb;
+.inputHolder {
+  background-color: white;
+  padding: 1vw;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  min-width: 40vw;
+  align-items: center;
+  margin: 2vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.emptyButton {
+  border: none;
+  background-color: transparent;
+  max-height: fit-content;
+}
+
+.emptyButton:hover {
+  color: blue;
 }
