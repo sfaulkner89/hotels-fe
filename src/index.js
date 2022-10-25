@@ -7,10 +7,9 @@ import "leaflet/dist/leaflet.css";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "http://localhost:2000/graphql",
+  uri: process.env.REACT_APP_FRONT_END_URL,
   cache: new InMemoryCache(),
 });
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ApolloProvider client={client}>
