@@ -17,9 +17,10 @@ export default function Map({
   setFullscreen,
   setUSState,
 }) {
+  const winWidth = window.innerWidth > 1000;
   const map = useRef();
   const defCenter = [37, -96];
-  const defZoom = 4;
+  const defZoom = winWidth ? 4 : 3;
   const [hovered, setHovered] = useState();
   const [center, setCenter] = useState(defCenter);
   const [zoom, setZoom] = useState(defZoom);
