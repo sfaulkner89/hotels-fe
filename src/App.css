@@ -89,15 +89,28 @@ body {
   min-width: 60%;
 }
 
-.inputHolder {
+.inputContainer {
   background-color: white;
   padding: 1vw;
   border-radius: 10px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   min-width: 40vw;
+  justify-content: space-around;
   align-items: center;
   margin: 2vh;
+}
+
+.inputHolder {
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  min-width: 40vw;
+}
+
+.warningHolder {
+  background-color: darkred;
+  border-radius: 10px;
 }
 
 .emptyButton {

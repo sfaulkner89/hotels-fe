@@ -44,6 +44,7 @@ function App() {
       getStateHotels(USState);
     } else {
       if (data) {
+        console.log(data.hotels);
         setHotels(data.hotels);
       }
     }
@@ -87,6 +88,7 @@ function App() {
             hotelsByStateRefetch={hotelsByStateRefetch}
             selectedPlace={selectedPlace}
             setSelectedPlace={setSelectedPlace}
+            mapState={USState}
           />
         )}
       </div>

@@ -96,67 +96,74 @@ export default function Map({
           style={style}
           onEachFeature={onEachFeature}
         />
-        {hotelList.map((hotel, i) => {
-          const avRating =
-            hotel.stays.map((stay) => stay.rating).reduce((a, b) => a + b, 0) /
-            hotel.stays.length;
-          const avPrice =
-            hotel.stays.map((stay) => stay.price).reduce((a, b) => a + b, 0) /
-            hotel.stays.length;
-          return (
-            <Marker key={i} position={[hotel.lat, hotel.lng]} icon={hotelIcon}>
-              <Popup>
-                <p>
-                  {hotel.name}
-                  <Button
-                    style={{
-                      height: "0.5vh",
-                      width: "0.5vw",
-                      fontSize: "0.6em",
-                    }}
-                    onClick={() =>
-                      sendTrip({
-                        notes: "",
-                        hotel: hotel.name,
-                        city: hotel.city.name,
-                        state: hotel.city.state.name,
-                        price:
-                          hotel.stays.length > 0
-                            ? hotel.stays?.[hotel.stays.length - 1].price
-                            : 0,
-                        rating:
-                          hotel.stays.length > 0
-                            ? hotel.stays?.[hotel.stays.length - 1].rating
-                            : 0,
-                        date: new Date().toLocaleDateString(),
-                      })
-                    }
-                  >
-                    + Stay
-                  </Button>
-                </p>
-                <p>Stays: {hotel.stays.length}</p>
-                <p>
-                  Average Rating:{" "}
-                  <StarsRating
-                    edit={false}
-                    value={avRating}
-                    count={5}
-                  ></StarsRating>
-                </p>
-                <p>
-                  Average Price:{" "}
-                  <StarsRating
-                    edit={false}
-                    value={avPrice}
-                    count={5}
-                    char="£"
-                  ></StarsRating>
-                </p>
-              </Popup>
-            </Marker>
-          );
-        })}
+        {hotelList
+          .filter((hotel) => hotel.lat && hotel.lng)
+          .map((hotel, i) => {
+            const avRating =
+              hotel.stays
+                .map((stay) => stay.rating)
+                .reduce((a, b) => a + b, 0) / hotel.stays.length;
+            const avPrice =
+              hotel.stays.map((stay) => stay.price).reduce((a, b) => a + b, 0) /
+              hotel.stays.length;
+            return (
+              <Marker
+                key={i}
+                position={[hotel.lat, hotel.lng]}
+                icon={hotelIcon}
+              >
+                <Popup>
+                  <p>
+                    {hotel.name}
+                    <Button
+                      style={{
+                        height: "0.5vh",
+                        width: "0.5vw",
+                        fontSize: "0.6em",
+                      }}
+                      onClick={() =>
+                        sendTrip({
+                          notes: "",
+                          hotel: hotel.name,
+                          city: hotel.city.name,
+                          state: hotel.city.state.name,
+                          price:
+                            hotel.stays.length > 0
+                              ? hotel.stays?.[hotel.stays.length - 1].price
+                              : 0,
+                          rating:
+                            hotel.stays.length > 0
+                              ? hotel.stays?.[hotel.stays.length - 1].rating
+                              : 0,
+                          date: new Date().toLocaleDateString(),
+                        })
+                      }
+                    >
+                      + Stay
+                    </Button>
+                  </p>
+                  <p>Stays: {hotel.stays.length}</p>
+                  <p>
+                    Average Rating:{" "}
+                    <StarsRating
+                      edit={false}
+                      value={avRating}
+                      count={5}
+                    ></StarsRating>
+                  </p>
+                  <p>
+                    Average Price:{" "}
+                    <StarsRating
+                      edit={false}
+                      value={avPrice}
+                      count={5}
+                      char="£"
+                    ></StarsRating>
+                  </p>
+                </Popup>
+              </Marker>
+            );
+          })}
         {/* <Control position="top-right">
           <button
             className="fullscreenButton"

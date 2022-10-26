@@ -38,8 +38,11 @@ export default function InfoHolder({
   listRefetch,
   hotelsByStateRefetch,
   location,
+  setLocation,
   info,
   setInfo,
+  mapState,
+  setNotVisible,
 }) {
   const { data: stateData, refetch: statesRefetch } = useQuery(ALL_STATES);
   const [getHotelsByCity, { refetch: hotelsRefetch }] =
@@ -52,26 +55,21 @@ export default function InfoHolder({
   const [addStay] = useMutation(STAY_ADD);
 
   const changeHandler = (key, value) => {
-    console.log(info);
     setInfo({
       ...info,
       [key]: value,
     });
-    console.log(info);
   };
   const refetchAll = async () => {
     await statesRefetch();
-    console.log("1");
     await citiesRefetch().catch((err) => console.log(err));
-    console.log("2");
     await hotelsRefetch();
-    console.log("3");
     await listRefetch();
-    console.log("4");
     await hotelsByStateRefetch().catch((err) => console.log(err));
   };
   const cancelHandler = async () => {
     setSelectedPlace();
+    setLocation();
     clearSearch();
     setInfo({
       hotel: "",
@@ -83,7 +81,12 @@ export default function InfoHolder({
   };
 
   const submitHandler = async () => {
-    console.log(info);
+    if (info.state !== mapState) {
+      setNotVisible(true);
+      setTimeout(() => {
+        setNotVisible(false);
+      }, 3000);
+    }
     const stateId = await stateFindOrCreate(stateData, addState, info);
     const cityId = await cityFindOrCreate(
       getCitiesByState,

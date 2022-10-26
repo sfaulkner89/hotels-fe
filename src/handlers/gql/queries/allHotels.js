@@ -11,6 +11,7 @@ export const HOTELS_QUERY = gql(`
     lng,
     stays {
       id,
+      hotelId,
       date,
       notes,
       rating,
