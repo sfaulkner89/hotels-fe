@@ -91,13 +91,17 @@ export default function HotelPopOut({ stay, hotelId, refetches, setExpand }) {
           )}
         </TableCell>
       </TableRow>
-      <TableRow>
-        <TableCell colSpan={6} padding="none" sx={{ overflow: "scroll" }}>
-          <p style={{ marginLeft: "5vw", maxWidth: "70vw" }}>
-            Notes: {stay.notes}
-          </p>
-        </TableCell>
-      </TableRow>
+      {winWidth ? (
+        <></>
+      ) : (
+        <TableRow>
+          <TableCell colSpan={6} padding="none" sx={{ overflow: "scroll" }}>
+            <p style={{ marginLeft: "5vw", maxWidth: "70vw" }}>
+              Notes: {stay.notes}
+            </p>
+          </TableCell>
+        </TableRow>
+      )}
     </React.Fragment>
   );
 }
