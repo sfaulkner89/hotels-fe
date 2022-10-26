@@ -17,11 +17,9 @@ import HotelPopOut from "../HotelPopOut.js/HotelPopOut";
 export default function HotelRow({ hotel, sendTrip, refetches }) {
   const [expand, setExpand] = useState(false);
   const lastStay = hotel.stays.length - 1;
-
-  console.log(hotel);
+  const winWidth = window.innerWidth > 1000;
 
   const addHandler = () => {
-    console.log(hotel);
     sendTrip({
       notes: "",
       hotel: hotel.name,
@@ -36,24 +34,32 @@ export default function HotelRow({ hotel, sendTrip, refetches }) {
     <React.Fragment>
       <TableRow>
         <TableCell>{hotel.name}</TableCell>
-        <TableCell>
-          {hotel.stays.length > 0 && hotel.stays[lastStay]?.rating > 0 ? (
-            <StarsRating value={hotel.stays[lastStay]?.rating} count={5} />
-          ) : (
-            "Not Rated"
-          )}
-        </TableCell>
-        <TableCell>
-          {hotel.stays.length > 0 && hotel.stays[lastStay]?.price > 0 ? (
-            <StarsRating
-              value={hotel.stays[lastStay]?.price}
-              count={5}
-              char="£"
-            />
-          ) : (
-            "No Price Given"
-          )}
-        </TableCell>
+        <TableCell>{hotel.city.name}</TableCell>
+        <TableCell>{hotel.city.state.name}</TableCell>
+        {winWidth ? (
+          <React.Fragment>
+            <TableCell>
+              {hotel.stays.length > 0 && hotel.stays[lastStay]?.rating > 0 ? (
+                <StarsRating value={hotel.stays[lastStay]?.rating} count={5} />
+              ) : (
+                "Not Rated"
+              )}
+            </TableCell>
+            <TableCell>
+              {hotel.stays.length > 0 && hotel.stays[lastStay]?.price > 0 ? (
+                <StarsRating
+                  value={hotel.stays[lastStay]?.price}
+                  count={5}
+                  char="£"
+                />
+              ) : (
+                "No Price Given"
+              )}
+            </TableCell>
+          </React.Fragment>
+        ) : (
+          <></>
+        )}
         <TableCell>
           <button
             className="dropDownButton"
@@ -64,9 +70,9 @@ export default function HotelRow({ hotel, sendTrip, refetches }) {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell colSpan={6} style={{ paddingBottom: 0, paddingTop: 0 }}>
+        <TableCell colSpan={7} style={{ paddingBottom: 0, paddingTop: 0 }}>
           <Collapse in={expand} unmountOnExit>
-            <Box sx={{ margin: 3 }}>
+            <Box sx={{ margin: winWidth ? 3 : 0 }}>
               <Typography variant="h6" gutterBottom component="div">
                 {hotel.name}
                 <Button style={{ marginLeft: "1%" }} onClick={addHandler}>
@@ -83,7 +89,7 @@ export default function HotelRow({ hotel, sendTrip, refetches }) {
                     <TableCell>Date</TableCell>
                     <TableCell>Rating</TableCell>
                     <TableCell>Price</TableCell>
-                    <TableCell>Notes</TableCell>
+                    {winWidth ? <TableCell>Notes</TableCell> : <></>}
                     <TableCell>Delete</TableCell>
                   </TableRow>
                 </TableHead>

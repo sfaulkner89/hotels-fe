@@ -23,7 +23,6 @@ function App() {
     date: undefined,
     notes: "",
   });
-
   const refetches = { hotelsByStateRefetch, listRefetch, USState };
 
   useEffect(() => {

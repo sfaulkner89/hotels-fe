@@ -122,3 +122,62 @@ body {
 .emptyButton:hover {
   color: blue;
 }
+
+.mobileNewContainer {
+  background-color: white;
+  border-radius: 10px;
+  width: 95vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newHotelContainer {
+  max-width: 60vw;
+}
+
+.starsRatingMobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 70vw;
+  justify-content: space-around;
+}
+
+.cancelChecker {
+  display: flex;
+  border: 1px solid red;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .topRow {
+    flex-direction: column;
+  }
+  .mapHolder {
+    width: 95vw;
+  }
+  .newHotelContainer {
+    width: 95vw;
+  }
+  .submitButton {
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    justify-content: space-around;
+  }
+  .cancelChecker {
+    flex-direction: column;
+    padding: 8vw;
+    border: none;
+  }
+  .emptyButton {
+    padding: 3vw;
+    margin: 1vw;
+    border-radius: 5px;
+    border: 1px solid black;
+  }
+}

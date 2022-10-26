@@ -81,7 +81,7 @@ export default function InfoHolder({
   };
 
   const submitHandler = async () => {
-    if (info.state !== mapState) {
+    if (mapState && info.state !== mapState) {
       setNotVisible(true);
       setTimeout(() => {
         setNotVisible(false);
@@ -114,7 +114,7 @@ export default function InfoHolder({
     });
   };
 
-  return (
+  return window.innerWidth > 600 ? (
     <div className="newHotelContainer">
       <TableContainer component={Paper} style={{ padding: "0.5vw" }}>
         <Typography variant="h5">Add New Stay</Typography>
@@ -225,6 +225,84 @@ export default function InfoHolder({
           </Button>
         </div>
       </TableContainer>
+    </div>
+  ) : (
+    <div className="mobileNewContainer">
+      <Typography variant="h5">Add New Stay</Typography>
+      <Input
+        value={info.hotel}
+        onChange={(e) => changeHandler("hotel", e.target.value)}
+        sx={{ width: "70vw" }}
+        placeholder="Hotel"
+      ></Input>
+      <Input
+        value={info.city}
+        onChange={(e) => changeHandler("city", e.target.value)}
+        sx={{ width: "70vw" }}
+        placeholder="City"
+      ></Input>
+      <Input
+        sx={{ width: "70vw" }}
+        value={info.state}
+        onChange={(e) => changeHandler("state", e.target.value)}
+        placeholder="State"
+      ></Input>
+      <div className="starsRatingMobile">
+        <p>Price:</p>
+        <StarsRating
+          count={5}
+          value={info.price}
+          onChange={(e) => changeHandler("price", e)}
+          char="£"
+          size={20}
+        />
+      </div>
+      <div className="starsRatingMobile">
+        <p>Rating:</p>
+        <StarsRating
+          count={5}
+          value={info.rating}
+          onChange={(e) => changeHandler("rating", e)}
+          size={20}
+        />
+      </div>
+      <Input
+        value={info.notes}
+        style={{
+          width: "70vw",
+        }}
+        placeholder="Notes"
+        fullWidth={true}
+        onChange={(e) => changeHandler("notes", e.target.value)}
+      />
+      <CalendarContainer>
+        <DatePicker
+          onChange={(e) => changeHandler("date", e.toLocaleDateString())}
+          value={info.date}
+          customInput={
+            <div>
+              <p>Date:</p>
+              {info.date ? (
+                <p className="dateDisplay">{info.date}</p>
+              ) : (
+                <AiOutlineCalendar size={30} />
+              )}
+            </div>
+          }
+        />
+      </CalendarContainer>
+      <div className="submitButton">
+        <Button
+          variant="contained"
+          style={{ margin: "0.5%" }}
+          onClick={submitHandler}
+        >
+          Add Hotel
+        </Button>
+        <Button variant="outlined" onClick={cancelHandler}>
+          Cancel
+        </Button>
+      </div>
     </div>
   );
 }

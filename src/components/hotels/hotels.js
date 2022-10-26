@@ -5,13 +5,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
   Card,
 } from "@mui/material";
+import React from "react";
 import HotelRow from "../HotelRow.js/HotelRow";
 import { headerStyle } from "../InfoHolder/InfoHolder";
 
 export default function Hotels({ hotels, sendTrip, refetches }) {
+  const winWidth = window.innerWidth > 1000;
   return (
     <div className="hotelsContainer">
       <div>
@@ -20,8 +21,16 @@ export default function Hotels({ hotels, sendTrip, refetches }) {
             <TableHead>
               <TableRow>
                 <TableCell style={headerStyle}>Hotel</TableCell>
-                <TableCell style={headerStyle}>Latest Rating</TableCell>
-                <TableCell style={headerStyle}>Price</TableCell>
+                <TableCell style={headerStyle}>City</TableCell>
+                <TableCell style={headerStyle}>State</TableCell>
+                {winWidth ? (
+                  <React.Fragment>
+                    <TableCell style={headerStyle}>Latest Rating</TableCell>
+                    <TableCell style={headerStyle}>Price</TableCell>
+                  </React.Fragment>
+                ) : (
+                  <></>
+                )}
                 <TableCell style={headerStyle}>Details</TableCell>
               </TableRow>
             </TableHead>
