@@ -6,7 +6,8 @@ export const deleteHandler = async (
   setCheck
 ) => {
   setCheck(false);
-  await removeStay({ variables: { stayId, hotelId } });
+  const stayData = await removeStay({ variables: { stayId, hotelId } });
+  console.log(stayData);
   await refetches.hotelsByStateRefetch().catch((err) => console.log(err));
   await refetches.listRefetch();
 };

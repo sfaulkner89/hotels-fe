@@ -91,6 +91,7 @@ export default function HotelRow({ hotel, sendTrip, refetches }) {
                   {hotel.stays.map((stay, i) => {
                     return (
                       <HotelPopOut
+                        setExpand={setExpand}
                         key={i}
                         stay={stay}
                         hotelId={hotel.id}

@@ -6,7 +6,7 @@ import { useMutation } from "@apollo/client";
 import { STAY_REMOVE } from "../../handlers/gql/mutations";
 import { deleteHandler } from "../../handlers/remove/removeStay";
 
-export default function HotelPopOut({ stay, hotelId, refetches }) {
+export default function HotelPopOut({ stay, hotelId, refetches, setExpand }) {
   const [check, setCheck] = useState(false);
   const [removeStay] = useMutation(STAY_REMOVE);
   return (
@@ -46,7 +46,14 @@ export default function HotelPopOut({ stay, hotelId, refetches }) {
               className="emptyButton"
               style={{ textDecoration: "underline" }}
               onClick={() =>
-                deleteHandler(stay.id, hotelId, removeStay, refetches, setCheck)
+                deleteHandler(
+                  stay.id,
+                  hotelId,
+                  removeStay,
+                  refetches,
+                  setCheck,
+                  setExpand
+                )
               }
             >
               Yes
